@@ -318,4 +318,31 @@
 	\texttt{by.self} should have all the important stuff.
 }
 
+\begin{frame}[fragile]{Compiling}
+	\begin{uncoverenv}<+->
+		<<>>=
+			loop_apply_c <- compiler::cmpfun(loop_apply)
+		@
+	\end{uncoverenv}
+	
+	\begin{uncoverenv}<+->
+		<<>>=
+			benchmark(loop_apply(random_vec, dummy_func))
+		@
+		
+		<<>>=
+			benchmark(loop_apply_c(random_vec, dummy_func))
+		@
+	\end{uncoverenv}
+\end{frame}
+\note[itemize]{
+	\item
+	As I mentioned earlier, intepreted languages can sometimes be compiled.
+	R comes with a function for that.
+	
+	\item
+	So, once you've identified a bottleneck, the fastest thing to do is just to compile it.
+	It doesn't often help much, but it's very little effort to try.
+}
+
 \end{document}
