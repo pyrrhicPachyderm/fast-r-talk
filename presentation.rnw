@@ -23,8 +23,18 @@
 \begin{frame}
 	\titlepage
 \end{frame}
-\note{
+\note[itemize]{
+	\item
+	There are a lot of us here who have to run code that takes a long time.
+	We can save a lot of time by making it faster.
 	
+	\item
+	R isn't naturally a fast language.
+	But small changes can make a lot of difference.
+	Just last week, I cut a program down from over 60 hours to just 1 hour by rewriting just one arithmetic function in it.
+	
+	\item
+	We'll leap in with an example, to prove a point.
 }
 
 \begin{frame}[fragile]{Row Sums: Which is Faster?}
