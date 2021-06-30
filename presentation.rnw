@@ -319,21 +319,21 @@
 }
 
 \begin{frame}[fragile]{Compiling}
-	\begin{uncoverenv}<+->
-		<<>>=
-			loop_apply_c <- compiler::cmpfun(loop_apply)
-		@
-	\end{uncoverenv}
+	<<>>=
+		fib <- function(n) {
+			result <- rep(0, n)
+			result[1] <- 1
+			result[2] <- 1
+			for(i in 3:n) {
+				result[i] <- result[i-1] + result[i-2]
+			}
+			return(result)
+		}
+	@
 	
-	\begin{uncoverenv}<+->
-		<<>>=
-			benchmark(loop_apply(random_vec, dummy_func))
-		@
-		
-		<<>>=
-			benchmark(loop_apply_c(random_vec, dummy_func))
-		@
-	\end{uncoverenv}
+	<<>>=
+		fib_c <- compiler::cmpfun(fib)
+	@
 \end{frame}
 \note[itemize]{
 	\item
@@ -343,6 +343,37 @@
 	\item
 	So, once you've identified a bottleneck, the fastest thing to do is just to compile it.
 	It doesn't often help much, but it's very little effort to try.
+	
+	\item
+	This just computes the Fibonacci sequence up to $n$.
+}
+
+\begin{frame}[fragile]{Compiling: Benchmarks}
+	\begin{uncoverenv}<+->
+		<<>>=
+			benchmark(fib(1e5))
+		@
+		
+		<<>>=
+			benchmark(fib_c(1e5))
+		@
+	\end{uncoverenv}
+	\begin{uncoverenv}<+->
+		<<>>=
+			benchmark(fib(1e7))
+		@
+		
+		<<>>=
+			benchmark(fib_c(1e7))
+		@
+	\end{uncoverenv}
+\end{frame}
+\note[itemize]{
+	\item
+	There's a time saving.
+	
+	\item
+	But it doesn't scale very well.
 }
 
 \end{document}
