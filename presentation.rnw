@@ -332,7 +332,7 @@
 	@
 	
 	<<>>=
-		fib_c <- compiler::cmpfun(fib)
+		fib_byte <- compiler::cmpfun(fib)
 	@
 \end{frame}
 \note[itemize]{
@@ -355,7 +355,7 @@
 		@
 		
 		<<>>=
-			benchmark(fib_c(1e5))
+			benchmark(fib_byte(1e5))
 		@
 	\end{uncoverenv}
 	\begin{uncoverenv}<+->
@@ -364,7 +364,7 @@
 		@
 		
 		<<>>=
-			benchmark(fib_c(1e7))
+			benchmark(fib_byte(1e7))
 		@
 	\end{uncoverenv}
 \end{frame}
