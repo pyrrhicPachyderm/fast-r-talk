@@ -207,19 +207,19 @@
 	<<>>=
 		n <- 1000000
 		random_vec <- rnorm(n)
-		dummy_function <- function(x) {x^2 - 1}
+		dummy_func <- function(x) {x^2 - 1}
 	@
 	
 	<<>>=
-		benchmark(loop_apply(random_vec, dummy_function))
+		benchmark(loop_apply(random_vec, dummy_func))
 	@
 	
 	<<>>=
-		benchmark(lapply(random_vec, dummy_function))
+		benchmark(lapply(random_vec, dummy_func))
 	@
 	
 	<<>>=
-		benchmark(dummy_function(random_vec))
+		benchmark(dummy_func(random_vec))
 	@
 \end{frame}
 \note[itemize]{
@@ -237,7 +237,7 @@
 \begin{frame}[fragile]{Profiling: Timing Functions}
 	\begin{uncoverenv}<+->
 		<<>>=
-			system.time(lapply(random_vec, dummy_function))
+			system.time(lapply(random_vec, dummy_func))
 		@
 	\end{uncoverenv}
 	
