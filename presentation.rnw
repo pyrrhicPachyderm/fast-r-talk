@@ -2,6 +2,7 @@
 @
 
 %NB: Need to use [fragile] on frames with R chunks, or line breaks in printed code vanish.
+%Also on frames with # in \url.
 
 \usepackage{amsmath}
 \usepackage{siunitx}
@@ -142,7 +143,7 @@
 	Just-in-time compiling is mid-way along this continuum, and Java and Julia each do it differently.
 }
 
-\begin{frame}{What is Vectorising?}
+\begin{frame}[fragile]{What is Vectorising?}
 	\begin{itemize}
 		\item
 		Running loops in C.
