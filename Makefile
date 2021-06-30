@@ -37,3 +37,6 @@ spellcheck: $(content_rnw_files)
 		aspell check --per-conf=./aspell.conf "$$file" ;\
 	done
 .PHONY: spellcheck
+
+#Never remove secondary files; .SECONDARY with no dependencies.
+.SECONDARY:
