@@ -47,7 +47,7 @@
 	<<>>=
 		row_sums_loop <- function(mat) {
 			result <- rep(0, nrow(mat))
-			for(i in seq(1, ncol(mat))) {
+			for(i in 1:ncol(mat)) {
 				result <- result + mat[,i]
 			}
 			return(result)
