@@ -5,8 +5,8 @@
 \usepackage{siunitx}
 
 <<include=F>>=
-	elapsed_time <- function(expr) {
-		return(system.time(expr)[["elapsed"]])
+	benchmark <- function(expr) {
+		cat(system.time(expr)[["elapsed"]])
 	}
 @
 
