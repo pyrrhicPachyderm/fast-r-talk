@@ -166,4 +166,68 @@
 	It's complicated, but at its core it's just a loop.
 }
 
+\begin{frame}[fragile]{What is \emph{Not} Vectorising?}
+	\begin{itemize}
+		\item
+		\texttt{apply}, \texttt{lapply}, \texttt{sapply}, \texttt{replicate}, etc.
+		
+		\item
+		See the source code of \texttt{lapply}:\\
+		\url{https://github.com/wch/r-source/blob/79298c499218846d14500255efd622b5021c10ec/src/main/apply.c#L34}
+	\end{itemize}
+\end{frame}
+\note[itemize]{
+	\item
+	Have a vectorised \emph{interface}, such as using \texttt{lapply}, is not sufficient to speed up.
+	
+	\item
+	See that the \texttt{lapply} source code just calls an R function again.
+}
+
+\begin{frame}[fragile]{Not Vectorising: An Example}
+	<<>>=
+		loop_apply <- function(x, func) {
+			result <- rep(0, length(x))
+			for(i in 1:length(x)) {
+				result[i] <- func(x[i])
+			}
+			return(result)
+		}
+	@
+\end{frame}
+\note[itemize]{
+	\item
+	Have a vectorised \emph{interface}, such as using \texttt{lapply}, is not sufficient to speed up.
+	
+	\item
+	Here's \texttt{lapply}, rewritten using an R loop.
+}
+
+\begin{frame}[fragile]{Not Vectorising: Benchmarks}
+	<<>>=
+		n <- 1000000
+		random_vec <- rnorm(n)
+		dummy_function <- function(x) {x^2 - 1}
+	@
+	
+	<<>>=
+		benchmark(loop_apply(random_vec, dummy_function))
+	@
+	
+	<<>>=
+		benchmark(lapply(random_vec, dummy_function))
+	@
+	
+	<<>>=
+		benchmark(dummy_function(random_vec))
+	@
+\end{frame}
+\note[itemize]{
+	\item
+	\texttt{loop\_apply} is actually slighty faster than \texttt{lapply}.
+	
+	\item
+	But both are around the same speed, and vastly slower than vectorising properly.
+}
+
 \end{document}
