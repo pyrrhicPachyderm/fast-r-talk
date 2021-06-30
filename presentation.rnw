@@ -44,13 +44,17 @@
 		}
 	@
 \end{frame}
-\note{
+\note[itemize]{
+	\item
 	Explain both pieces of code.
 	
+	\item
 	First uses apply, where 1 means apply over rows.
 	
+	\item
 	Second creates an empty column with \texttt{rep}, then loops over each column and adds it on.
 	
+	\item
 	Ask audience opinion on which will be faster.
 	Get a poll.
 }
@@ -79,11 +83,15 @@
 		@
 	\end{uncoverenv}
 \end{frame}
-\note{
+\note[itemize]{
+	\item
 	Explain that we've created some dummy data.
 	
+	\item
 	Counter to popular wisdom, the loop is faster.
 	Popular wisdom is not wrong; loops are \emph{usually} slower.
+	
+	\item
 	Will explain why this case is different later.
 	For now, note that it pays to know what's going on under the hood.
 }
