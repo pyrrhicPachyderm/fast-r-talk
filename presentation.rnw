@@ -27,4 +27,65 @@
 	
 }
 
+\begin{frame}[fragile]{Row Sums: Which is Faster?}
+	<<>>=
+		row_sums_apply <- function(mat) {
+			apply(mat, 1, sum)
+		}
+	@
+	
+	<<>>=
+		row_sums_loop <- function(mat) {
+			result <- rep(0, nrow(mat))
+			for(i in seq(1, ncol(mat))) {
+				result <- result + mat[,i]
+			}
+			return(result)
+		}
+	@
+\end{frame}
+\note{
+	Explain both pieces of code.
+	
+	First uses apply, where 1 means apply over rows.
+	
+	Second creates an empty column with \texttt{rep}, then loops over each column and adds it on.
+	
+	Ask audience opinion on which will be faster.
+	Get a poll.
+}
+
+\begin{frame}[fragile]{Row Sums: Benchmarks}
+	\begin{uncoverenv}<+->
+		<<>>=
+			n <- 10000
+			random_mat <- matrix(rnorm(n*n), nrow = n, ncol = n)
+		@
+	\end{uncoverenv}
+	
+	\begin{uncoverenv}<+->
+		<<>>=
+			benchmark(row_sums_apply(random_mat))
+		@
+		
+		<<>>=
+			benchmark(row_sums_loop(random_mat))
+		@
+	\end{uncoverenv}
+	
+	\begin{uncoverenv}<+->
+		<<>>=
+			benchmark(rowSums(random_mat))
+		@
+	\end{uncoverenv}
+\end{frame}
+\note{
+	Explain that we've created some dummy data.
+	
+	Counter to popular wisdom, the loop is faster.
+	Popular wisdom is not wrong; loops are \emph{usually} slower.
+	Will explain why this case is different later.
+	For now, note that it pays to know what's going on under the hood.
+}
+
 \end{document}
