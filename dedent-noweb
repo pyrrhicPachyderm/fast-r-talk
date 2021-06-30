@@ -16,10 +16,10 @@ for line in stdin:
 	line = re.sub("child=\"(.*).rnw\"", "child=\"\\1-dedented.rnw\"", line)
 	#Chunks start with a line containing only <<something>>= or @
 	#Each can be followed by whitespace
-	if re.match("^<<.*>>= *$", line) or re.match("^@ *$", line):
+	if re.match("^<<.*>>= *$", dedent(line)) or re.match("^@ *$", dedent(line)):
 		print(dedent(chunk), end="")
 		chunk = ""
-		print(line, end="")
+		print(dedent(line), end="")
 	else:
 		chunk += line
 
