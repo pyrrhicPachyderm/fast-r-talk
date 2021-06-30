@@ -228,6 +228,10 @@
 	
 	\item
 	But both are around the same speed, and vastly slower than vectorising properly.
+	
+	\item
+	You can't always vectorise, though.
+	You need a loop if results depend on previous results, e.g.\ Markov Chain Monte Carlo.
 }
 
 \end{document}
