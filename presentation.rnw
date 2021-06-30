@@ -4,6 +4,12 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 
+<<include=F>>=
+	elapsed_time <- function(expr) {
+		return(system.time(expr)[["elapsed"]])
+	}
+@
+
 \title{Writing Faster R}
 \author{
 	Christopher Brown
