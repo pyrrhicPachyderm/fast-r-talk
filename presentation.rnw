@@ -8,7 +8,7 @@
 \usepackage{siunitx}
 \usepackage{texlogos}
 
-<<include=F>>=
+<<benchmark_function, include=F>>=
 	benchmark <- function(expr) {
 		cat(system.time(expr)[["elapsed"]])
 	}
@@ -232,6 +232,56 @@
 	\item
 	You can't always vectorise, though.
 	You need a loop if results depend on previous results, e.g.\ Markov Chain Monte Carlo.
+}
+
+\begin{frame}[fragile]{Profiling}
+	\begin{uncoverenv}<+->
+		<<>>=
+			system.time(lapply(random_vec, dummy_function))
+		@
+	\end{uncoverenv}
+	
+	\begin{uncoverenv}<+->
+		<<ref.label='benchmark_function', eval=FALSE>>=
+		@
+	\end{uncoverenv}
+	
+	\begin{uncoverenv}<+->
+		<<eval=FALSE>>=
+			tmp <- tempfile()
+			Rprof(tmp)
+			do_something_slow()
+			Rprof()
+			summaryRprof(tmp)
+		@
+	\end{uncoverenv}
+\end{frame}
+\note[itemize]{
+	\item
+	You can spend a long time messing about with your code trying to make it faster.
+	And you can make code a lot less readable by trying to make it faster.
+	How do we save time and readability?
+	
+	\item
+	Most of your code takes no time at all to run.
+	Usually, only one bit is slow.
+	Which bit?
+	Try profiling.
+	
+	\item
+	You can time a pice of code with \texttt{system.time}.
+	User and system time are complicated to explain; use elapsed.
+	The \texttt{benchmark} function I've been using is just pulling the elapsed time from \texttt{system.time}.
+	
+	\item
+	\texttt{Rprof} is included by default; not even a library.
+	\texttt{tempfile} just gives a temporary file.
+	I haven't included any output here, 'cause it's hard to come up with a small example where it actually demnstrates anything.
+	Also, knitr makes a mess of it.
+	
+	\item
+	There are several packages with alternatives.
+	E.g.\ \texttt{microbenchmark} and Hadley Wickham's \texttt{profr}.
 }
 
 \end{document}
