@@ -14,6 +14,8 @@ chunk = ""
 for line in stdin:
 	#Included files will need dedenting, so their names will need changing.
 	line = re.sub("child=\"(.*).rnw\"", "child=\"\\1-dedented.rnw\"", line)
+	#knitr sometimes seems to struggle with tabs, so turn them to four spaces.
+	line = line.replace("\t", "    ")
 	#Chunks start with a line containing only <<something>>= or @
 	#Each can be followed by whitespace
 	if re.match("^<<.*>>= *$", dedent(line)) or re.match("^@ *$", dedent(line)):
