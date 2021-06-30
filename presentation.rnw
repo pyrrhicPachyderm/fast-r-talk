@@ -142,4 +142,27 @@
 	Just-in-time compiling is mid-way along this continuum, and Java and Julia each do it differently.
 }
 
+\begin{frame}{What is Vectorising?}
+	\begin{itemize}
+		\item
+		Running loops in C.
+		
+		\item
+		See the source code of \texttt{lapply}:\\
+		\url{https://github.com/wch/r-source/blob/79298c499218846d14500255efd622b5021c10ec/src/main/apply.c#L34}
+	\end{itemize}
+\end{frame}
+\note[itemize]{
+	\item
+	You may well have heard the aphorism to vectorise your code.
+	Why does this make things faster?
+	
+	\item
+	It just runs the loops in C instead.
+	
+	\item
+	See the source code for \texttt{lapply}.
+	It's complicated, but at its core it's just a loop.
+}
+
 \end{document}
