@@ -5,6 +5,7 @@
 
 \usepackage{amsmath}
 \usepackage{siunitx}
+\usepackage{texlogos}
 
 <<include=F>>=
 	benchmark <- function(expr) {
@@ -104,6 +105,41 @@
 	\item
 	Will explain why this case is different later.
 	For now, note that it pays to know what's going on under the hood.
+}
+
+\begin{frame}{Compiled or Interpreted}
+	\begin{itemize}
+		\item<+-> Compiled:
+		\begin{itemize}
+			\item C, {\cpluspluslogo}, C\#
+			\item Rust
+			\item Fortran
+			\item Go
+		\end{itemize}
+		\item<.-> Interpreted:
+		\begin{itemize}
+			\item R
+			\item Python
+			\item MATLAB
+			\item sh, bash, csh, zsh, etc.
+		\end{itemize}
+		\item<+-> Just-in-time compiled:
+		\begin{itemize}
+			\item Julia
+			\item Java
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+\note[itemize]{
+	\item
+	Explain compiled and interpreted.
+	
+	\item
+	These are just some examples.
+	
+	\item
+	In truth, this is kind of a continuum, and you can sometimes compile interpreted languages or vice versa.
+	Just-in-time compiling is mid-way along this continuum, and Java and Julia each do it differently.
 }
 
 \end{document}
