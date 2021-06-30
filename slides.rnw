@@ -2,4 +2,5 @@
 
 \setbeameroption{hide notes}
 
-\input{presentation}
+<<child="presentation.rnw">>=
+@

@@ -4,13 +4,21 @@ RM := rm -f
 
 slidedoc := slides
 notedoc := notes
-content_tex_files := presentation.tex
-supporting_tex_files := theme.tex
+content_rnw_files := presentation.rnw
+supporting_rnw_files := theme.rnw
 
 all: $(slidedoc).pdf $(notedoc).pdf
 .PHONY: all
 
-%.pdf: %.tex $(content_tex_files) $(supporting_tex_files)
+%-dedented.rnw: dedent-noweb %.rnw
+	./$< <$(word 2,$^) >$@
+
+content_rnw_files_dedented := $(content_rnw_files:%.rnw=%-dedented.rnw)
+supporting_rnw_files_dedented := $(supporting_rnw_files:%.rnw=%-dedented.rnw)
+
+%.tex: %-dedented.rnw $(content_rnw_files_dedented) $(supporting_rnw_files_dedented)
+	R -e 'library(knitr);knit("$<","$@")'
+%.pdf: %.tex
 	latexmk $(LATEXMK_FLAGS) --jobname="$(basename $@)" $<
 
 clean:
@@ -18,11 +26,13 @@ clean:
 		shopt -s globstar;\
 		$(RM) **/*.aux **/*.log **/*.fls **/*.fdb_latexmk;\
 		$(RM) **/*.out **/*.nav **/*.snm **/*.toc;\
+		$(RM) **/*-dedented.rnw;\
+		$(RM) **/*.tex;\
 	)
 	@$(RM) $(slidedoc).pdf $(notedoc).pdf
 .PHONY: clean
 
-spellcheck: $(content_tex_files)
+spellcheck: $(content_rnw_files)
 	@for file in $^; do \
 		aspell check --per-conf=./aspell.conf "$$file" ;\
 	done

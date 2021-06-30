@@ -1,4 +1,5 @@
-\input{theme}
+<<child="theme.rnw">>=
+@
 
 \usepackage{amsmath}
 \usepackage{siunitx}

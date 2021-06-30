@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+#A script to dedent noweb code.
+#When writing noweb documents, I like to indent code chunks, for ease of reading.
+#But this ought to be stripped out before use.
+#This script strips shared leading whitespace from noweb chunks.
+#Reads from stdin, writes to stdout.
+
+from textwrap import dedent
+from sys import stdin
+import re
+
+chunk = ""
+
+for line in stdin:
+	#Included files will need dedenting, so their names will need changing.
+	line = re.sub("child=\"(.*).rnw\"", "child=\"\\1-dedented.rnw\"", line)
+	#Chunks start with a line containing only <<something>>= or @
+	#Each can be followed by whitespace
+	if re.match("^<<.*>>= *$", line) or re.match("^@ *$", line):
+		print(dedent(chunk), end="")
+		chunk = ""
+		print(line, end="")
+	else:
+		chunk += line
+
+print(dedent(chunk), end="")
