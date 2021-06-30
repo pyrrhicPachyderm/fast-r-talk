@@ -148,8 +148,8 @@
 		Running loops in C.
 		
 		\item
-		See the source code of \texttt{lapply}:\\
-		\url{https://github.com/wch/r-source/blob/79298c499218846d14500255efd622b5021c10ec/src/main/apply.c#L34}
+		See the source code of \texttt{colSums}:\\
+		\url{https://github.com/wch/r-source/blob/b59f3f1a979ae4aeef87263384335b4e59b042b9/src/main/array.c#L1877}
 	\end{itemize}
 \end{frame}
 \note[itemize]{
@@ -161,7 +161,7 @@
 	It just runs the loops in C instead.
 	
 	\item
-	See the source code for \texttt{lapply}.
+	See the source code for \texttt{colSums}.
 	It's complicated, but at its core it's just a loop.
 }
 
