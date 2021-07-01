@@ -7,6 +7,7 @@
 *.nav
 *.snm
 *.toc
+*.vrb
 
 *-dedented.rnw
 *.tex

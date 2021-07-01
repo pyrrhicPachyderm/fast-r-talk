@@ -25,7 +25,7 @@ clean:
 	@(\
 		shopt -s globstar;\
 		$(RM) **/*.aux **/*.log **/*.fls **/*.fdb_latexmk;\
-		$(RM) **/*.out **/*.nav **/*.snm **/*.toc;\
+		$(RM) **/*.out **/*.nav **/*.snm **/*.toc **/*.vrb;\
 		$(RM) **/*-dedented.rnw;\
 		$(RM) **/*.tex;\
 	)
