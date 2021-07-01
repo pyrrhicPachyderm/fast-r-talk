@@ -346,6 +346,7 @@
 	
 	\item
 	This just computes the Fibonacci sequence up to $n$.
+	I'm using the Fibonacci sequence as an example because it depends on previous results, so it can't be vectorised.
 }
 
 \begin{frame}[fragile]{Compiling: Benchmarks}
