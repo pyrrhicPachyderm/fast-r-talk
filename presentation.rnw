@@ -442,4 +442,47 @@
 	Now blazing fast.
 }
 
+\begin{frame}[fragile]{Memory Reallocation}
+	<<>>=
+		fib2 <- function(n) {
+			result <- c(1, 1)
+			for(i in 3:n) {
+				result <- c(result, result[i-1] + result[i-2])
+			}
+			return(result)
+		}
+	@
+\end{frame}
+\note[itemize]{
+	\item
+	Those were some things to try.
+	Now, some things to be careful of.
+	
+	\item
+	Can anyone guess how the speed of this code will compare to our earlier Fibonacci code?
+}
+
+\begin{frame}[fragile]{Memory Reallocation: Benchmarks}
+	<<>>=
+		benchmark(fib(1e4))
+	@
+	
+	<<>>=
+		benchmark(fib2(1e4))
+	@
+\end{frame}
+\note[itemize]{
+	\item
+	So, what went wrong?
+	
+	\item
+	Explain memory reallocation.
+	
+	\item
+	Always preallocate your vectors.
+	
+	\item
+	This is one advantage of \texttt{apply} and its cousins; they preallocate for you.
+}
+
 \end{document}
