@@ -40,13 +40,13 @@
 }
 
 \begin{frame}[fragile]{Row Sums: Which is Faster?}
-	<<>>=
+	<<row_sums_apply>>=
 		row_sums_apply <- function(mat) {
 			apply(mat, 1, sum)
 		}
 	@
 	
-	<<>>=
+	<<row_sums_loop>>=
 		row_sums_loop <- function(mat) {
 			result <- rep(0, nrow(mat))
 			for(i in 1:ncol(mat)) {
@@ -73,24 +73,24 @@
 
 \begin{frame}[fragile]{Row Sums: Benchmarks}
 	\begin{uncoverenv}<+->
-		<<>>=
+		<<row_sums_benchmark_setup>>=
 			n <- 10000
 			random_mat <- matrix(rnorm(n*n), nrow = n, ncol = n)
 		@
 	\end{uncoverenv}
 	
 	\begin{uncoverenv}<+->
-		<<>>=
+		<<row_sums_apply_benchmark>>=
 			benchmark(row_sums_apply(random_mat))
 		@
 		
-		<<>>=
+		<<row_sums_loop_benchmark>>=
 			benchmark(row_sums_loop(random_mat))
 		@
 	\end{uncoverenv}
 	
 	\begin{uncoverenv}<+->
-		<<>>=
+		<<row_sums_builtin_benchmark>>=
 			benchmark(rowSums(random_mat))
 		@
 	\end{uncoverenv}
@@ -483,6 +483,44 @@
 	
 	\item
 	This is one advantage of \texttt{apply} and its cousins; they preallocate for you.
+}
+
+\begin{frame}[fragile]{Memory Structure}
+	<<ref.label='row_sums_apply'>>=
+	@
+	
+	<<ref.label='row_sums_loop'>>=
+	@
+\end{frame}
+\note[itemize]{
+	\item
+	Remember these?
+}
+
+\begin{frame}[fragile]{Memory Structure: Benchmarks}
+	<<ref.label='row_sums_benchmark_setup'>>=
+	@
+	
+	<<ref.label='row_sums_apply_benchmark'>>=
+	@
+	
+	<<ref.label='row_sums_loop_benchmark'>>=
+	@
+	
+	<<ref.label='row_sums_builtin_benchmark'>>=
+	@
+\end{frame}
+\note[itemize]{
+	\item
+	Remember how the loop I wrote was actually faster than using apply?
+	
+	\item
+	Explain column-major order and cache misses.
+	Use a whiteboard.
+	
+	\item
+	In general, try to access things in column order.
+	It makes a bigger difference than you think it should.
 }
 
 \end{document}
