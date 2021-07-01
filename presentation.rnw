@@ -534,9 +534,9 @@
 		\end{itemize}
 		\item<+-> Is it doing unnecessary work?
 		\begin{itemize}
+			\item Algorithmic efficiency
 			\item Pre-allocate
 			\item Cache thrashing
-			\item Algorithmic efficiency
 		\end{itemize}
 		\item<+-> Vectorise it
 		\begin{itemize}
