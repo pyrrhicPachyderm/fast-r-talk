@@ -382,7 +382,9 @@
 }
 
 \begin{frame}[fragile]{Rcpp}
-	\begin{onlyenv}<+>
+	%In the presentation, show the R and C code on consecutive slides so we can flick back and forth for comparison.
+	%In the handout, just show the C code. The R code is still on a previous frame.
+	\begin{onlyenv}<+|handout:0>
 		<<ref.label='fib'>>=
 		@
 	\end{onlyenv}
