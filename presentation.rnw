@@ -319,7 +319,7 @@
 }
 
 \begin{frame}[fragile]{Compiling}
-	<<>>=
+	<<fib>>=
 		fib <- function(n) {
 			result <- rep(0, n)
 			result[1] <- 1
@@ -374,6 +374,71 @@
 	
 	\item
 	But it doesn't scale very well.
+}
+
+
+
+\begin{frame}[fragile]{Rcpp}
+	\begin{onlyenv}<+>
+		<<ref.label='fib'>>=
+		@
+	\end{onlyenv}
+	
+	\begin{onlyenv}<+>
+		<<>>=
+			Rcpp::cppFunction('IntegerVector fib_cpp(int n) {
+				IntegerVector result(n);
+				result[0] = 1;
+				result[1] = 1;
+				for(int i = 2; i < n; i++) {
+					result[i] = result[i-1] + result[i-2];
+				}
+				return result;
+			}')
+		@
+	\end{onlyenv}
+\end{frame}
+\note[itemize]{
+	\item
+	Rcpp makes it really easy to write {\cpluspluslogo} straight into R.
+	
+	\item
+	Learning a new language may seem scary, but R and {\cpluspluslogo} are actually far more similar than you might think.
+	Compare these two.
+	
+	\item
+	Things to note:
+	\begin{itemize}
+		\item We have to explicitly declare types.
+		This is great; it catches errors and provides built-in documentation.
+		
+		\item Arrays start at 0, not 1.
+		
+		\item Semicolons to end lines.
+		
+		\item For loops work slightly differently.
+		You can do R style ones as well, though.
+		
+		\item No brackets around return statement.
+	\end{itemize}
+}
+
+\begin{frame}[fragile]{Rcpp: Benchmarks}
+	<<>>=
+		benchmark(fib(1e7))
+	@
+	
+	<<>>=
+		benchmark(fib_byte(1e7))
+	@
+	
+	<<>>=
+		benchmark(fib_cpp(1e7))
+	@
+\end{frame}
+\note[itemize]{
+	\item
+	Now blazing fast.
 }
 
 \end{document}
