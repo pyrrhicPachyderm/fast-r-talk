@@ -521,4 +521,38 @@
 	It makes a bigger difference than you think it should.
 }
 
+\begin{frame}{The Process}
+	\begin{itemize}
+		\item<+-> Where is it slow?
+		\begin{itemize}
+			\item Profile
+			\item Is it worth my time?
+		\end{itemize}
+		\item<+-> Is it doing unnecessary work?
+		\begin{itemize}
+			\item Pre-allocate
+			\item Cache thrashing
+			\item Algorithmic efficiency
+		\end{itemize}
+		\item<+-> Vectorise it
+		\begin{itemize}
+			\item Is there are a base function?
+			\item Is there a package?
+		\end{itemize}
+		\item<+-> Compile it
+		\begin{itemize}
+			\item \texttt{compiler::cmpfun}
+			\item Rcpp
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+\note[itemize]{
+	\item
+	I've not gone over algorithmic efficiency here.
+	In truth, it's the most important thing of all.
+	But it's hard to teach without a full-blown course.
+	Any algorithmic optimisations are made case-by-case; general rules are hard.
+	Explain big O notation if there's time.
+}
+
 \end{document}
