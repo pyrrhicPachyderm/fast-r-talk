@@ -36,6 +36,10 @@
 	Just last week, I cut a program down from over 60 hours to just 1 hour by rewriting just one arithmetic function in it.
 	
 	\item
+	There'll be lots of code, so I hope you've got your thinking caps on.
+	I'll do my best to explain it all, but feel free to stop me at any time.
+	
+	\item
 	We'll leap in with an example, to prove a point.
 }
 
