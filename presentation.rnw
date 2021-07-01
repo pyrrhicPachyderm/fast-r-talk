@@ -228,7 +228,7 @@
 \end{frame}
 \note[itemize]{
 	\item
-	\texttt{loop\_apply} is actually slighty faster than \texttt{lapply}.
+	\texttt{loop\_apply} is actually slightly faster than \texttt{lapply}.
 	
 	\item
 	But both are around the same speed, and vastly slower than vectorising properly.
@@ -263,7 +263,7 @@
 	Try profiling.
 	
 	\item
-	You can time a pice of code with \texttt{system.time}.
+	You can time a piece of code with \texttt{system.time}.
 	User and system time are too complicated to explain; use elapsed.
 	The \texttt{benchmark} function I've been using is just pulling the elapsed time from \texttt{system.time}.
 	
@@ -301,7 +301,7 @@
 	\texttt{tempfile} just gives a temporary file.
 	
 	\item
-	I'm using \texttt{profvis::pause} because \texttt{Sys.sleep} dosn't use processor time, so doesn't show up to profilers.
+	I'm using \texttt{profvis::pause} because \texttt{Sys.sleep} doesn't use processor time, so doesn't show up to profilers.
 	
 	\item
 	There are other profiling tools, like \texttt{profr}, by Hadley Wickham, and \texttt{profvis}, which gives an interactive visualisation.
@@ -341,7 +341,7 @@
 \end{frame}
 \note[itemize]{
 	\item
-	As I mentioned earlier, intepreted languages can sometimes be compiled.
+	As I mentioned earlier, interpreted languages can sometimes be compiled.
 	R comes with a function for that.
 	
 	\item
