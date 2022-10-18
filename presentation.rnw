@@ -182,7 +182,7 @@
 \end{frame}
 \note[itemize]{
 	\item
-	Have a vectorised \emph{interface}, such as using \texttt{lapply}, is not sufficient to speed up.
+	Having a vectorised \emph{interface}, such as using \texttt{lapply}, is not sufficient to speed up.
 	
 	\item
 	See that the \texttt{lapply} source code just calls an R function again.
@@ -201,7 +201,7 @@
 \end{frame}
 \note[itemize]{
 	\item
-	Have a vectorised \emph{interface}, such as using \texttt{lapply}, is not sufficient to speed up.
+	Having a vectorised \emph{interface}, such as using \texttt{lapply}, is not sufficient to speed up.
 	
 	\item
 	Here's \texttt{lapply}, rewritten using an R loop.
