@@ -4,11 +4,12 @@ RM := rm -f
 
 slidedoc := slides
 notedoc := notes
+slideandnotedoc := slides-and-notes
 handoutdoc := handout
 content_rnw_files := presentation.rnw
 supporting_rnw_files := theme.rnw
 
-all: $(slidedoc).pdf $(notedoc).pdf $(handoutdoc).pdf
+all: $(slidedoc).pdf $(notedoc).pdf $(slideandnotedoc).pdf $(handoutdoc).pdf
 .PHONY: all
 
 %-dedented.rnw: dedent-noweb %.rnw
@@ -30,7 +31,7 @@ clean:
 		$(RM) **/*-dedented.rnw;\
 		$(RM) **/*.tex;\
 	)
-	@$(RM) $(slidedoc).pdf $(notedoc).pdf $(handoutdoc).pdf
+	@$(RM) $(slidedoc).pdf $(notedoc).pdf $(slideandnotedoc).pdf $(handoutdoc).pdf
 .PHONY: clean
 
 spellcheck: $(content_rnw_files)
